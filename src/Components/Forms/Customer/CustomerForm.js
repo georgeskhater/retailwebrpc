@@ -105,7 +105,7 @@ class CustomerForm extends Component {
           justify="flex-start"
           className={classes.root}
         >
-          <Grid item xs={3}>
+          <Grid item xs={11} sm={3}>
             <TextField
               id="standard-select-currency-native"
               select
@@ -127,8 +127,8 @@ class CustomerForm extends Component {
               ))}
             </TextField>
           </Grid>
-          <Grid item xs={9} />
-          <Grid item xs={5}>
+          <Grid item xs={0} sm={9} />
+          <Grid item xs={11} sm={5}>
             <TextField
               required
               id="standard-required"
@@ -141,8 +141,8 @@ class CustomerForm extends Component {
               fullWidth
             />
           </Grid>
-          <Grid item xs={1} />
-          <Grid item xs={5}>
+          <Grid item xs={0} sm={1} />
+          <Grid item xs={11} sm={5}>
             <TextField
               required
               id="standard-required"
@@ -155,7 +155,7 @@ class CustomerForm extends Component {
               fullWidth
             />
           </Grid>
-          <Grid item xs={11}>
+          <Grid item xs={11} sm={11}>
             <TextField
               required
               id="standard-required"
