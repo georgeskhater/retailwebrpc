@@ -6,7 +6,9 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import red from "@material-ui/core/colors/red";
 import CustomerForm from "./Forms/Customer/CustomerForm";
-
+import SearchForm from "./Forms/Customer/SearchForm";
+import ResultFrom from "./Forms/Customer/ResultFrom";
+import strings from "../Translations/i18n";
 const styles = theme => ({
   buttonCenter: {
     marginTop: "10%"
@@ -46,6 +48,26 @@ const styles = theme => ({
 });
 
 class FormCard extends React.Component {
+  selectComponent = () => {
+    switch (this.props.type) {
+      case "search":
+        return <SearchForm />;
+      case "create":
+        return <CustomerForm />;
+      case "result":
+        return <ResultFrom />;
+    }
+  };
+  getTtile = () => {
+    switch (this.props.type) {
+      case "search":
+        return "Filters";
+      case "create":
+        return strings.createCustomer;
+      case "result":
+        return "Customers";
+    }
+  };
   render() {
     const { classes } = this.props;
     return (
@@ -55,11 +77,9 @@ class FormCard extends React.Component {
           classes={{
             title: classes.title
           }}
-          title="Create Customer"
+          title={this.getTtile()}
         />
-        <CardContent>
-          <CustomerForm />
-        </CardContent>
+        <CardContent>{this.selectComponent()}</CardContent>
       </Card>
     );
   }

@@ -74,7 +74,7 @@ function DOBCustom(props) {
   );
 }
 
-class CustomerFormDetailed extends Component {
+class SearchFormDetailed extends Component {
   constructor(props) {
     super();
     this.state = {
@@ -103,7 +103,7 @@ class CustomerFormDetailed extends Component {
         justify="flex-start"
         className={classes.root}
       >
-        <Grid item sm={11} xs={11} md={5}>
+        <Grid item sm={11} xs={11}>
           <TextField
             label={strings.middleName}
             placeholder={strings.middleName}
@@ -114,8 +114,8 @@ class CustomerFormDetailed extends Component {
             fullWidth
           />
         </Grid>
-        <Grid item sm={false} xs={false} md={1} />
-        <Grid item sm={11} xs={11} md={5}>
+        <Grid item sm={false} xs={false} />
+        <Grid item sm={11} xs={11}>
           <TextField
             label={strings.secondLastName}
             placeholder={strings.secondLastName}
@@ -127,7 +127,7 @@ class CustomerFormDetailed extends Component {
           />
         </Grid>
 
-        <Grid item sm={11} xs={11} md={5}>
+        <Grid item sm={11} xs={11}>
           <TextField
             label={strings.phoneNumber}
             placeholder={strings.phoneNumber}
@@ -145,8 +145,8 @@ class CustomerFormDetailed extends Component {
             }}
           />
         </Grid>
-        <Grid item sm={false} xs={false} md={1} />
-        <Grid item sm={11} xs={11} md={5}>
+        <Grid item sm={false} xs={false} />
+        <Grid item sm={11} xs={11}>
           <TextField
             label={strings.dateOfBirth}
             placeholder={strings.dateOfBirth}
@@ -165,7 +165,7 @@ class CustomerFormDetailed extends Component {
             }}
           />
         </Grid>
-        <Grid item sm={11} xs={11} md={5}>
+        <Grid item sm={11} xs={11}>
           <TextField
             select
             label={strings.language}
@@ -193,8 +193,8 @@ class CustomerFormDetailed extends Component {
             ))}
           </TextField>
         </Grid>
-        <Grid item sm={false} xs={false} md={1} />
-        <Grid item sm={11} xs={11} md={5}>
+        <Grid item sm={false} xs={false} />
+        <Grid item sm={11} xs={11}>
           <TextField
             select
             label={strings.gender}
@@ -226,8 +226,8 @@ class CustomerFormDetailed extends Component {
     );
   }
 }
-CustomerFormDetailed.propTypes = {
+SearchFormDetailed.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(CustomerFormDetailed);
+export default withStyles(styles)(SearchFormDetailed);

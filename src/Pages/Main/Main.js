@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import AddCutsomer from "../Customer/AddCustomer";
 import { Switch, Route } from "react-router-dom";
+import AddCutsomer from "../Customer/AddCustomer";
+import SelectCustomer from "../Customer/SelectCustomer";
 export default class Main extends Component {
   constructor(props) {
     super();
@@ -9,7 +10,8 @@ export default class Main extends Component {
   render() {
     return (
       <Switch>
-        <Route path="/create" component={AddCutsomer} />
+        <Route path="/create/:lang" component={AddCutsomer} />
+        <Route path="/search" component={SelectCustomer} />
       </Switch>
     );
   }

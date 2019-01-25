@@ -3,10 +3,8 @@ import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import EmailIcon from "@material-ui/icons/Email";
 import Button from "@material-ui/core/Button";
-import SaveIcon from "@material-ui/icons/Save";
+import SearchIcon from "@material-ui/icons/Search";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
@@ -14,10 +12,10 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import Typography from "@material-ui/core/Typography";
 import classnames from "classnames";
 import CustomerFormDetailed from "./CustomerFormDetailed";
-import AddressDetailed from "./AddressDetailed";
-import ContactPreference from "./ContactPreference";
-import strings from "../../../Translations/i18n";
-
+import FlagIcon from "@material-ui/icons/Flag";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import ResultFrom from "./ResultFrom";
+import SearchFormDetailed from "./SearchFormDetailed";
 const styles = theme => ({
   root: {
     flexGrow: 1
@@ -49,26 +47,22 @@ const styles = theme => ({
   }
 });
 
-const titles = [
+const countries = [
   {
-    value: "Miss",
-    label: "Miss"
+    value: "En",
+    label: "USA"
   },
   {
-    value: "Madam",
-    label: "Madam"
+    value: "Fr",
+    label: "France"
   },
   {
-    value: "Ms",
-    label: "Ms"
+    value: "Es",
+    label: "Spain"
   },
   {
-    value: "Mister",
-    label: "Mister"
-  },
-  {
-    value: "Doctor",
-    label: "Doctor"
+    value: "it",
+    label: "Italy"
   }
 ];
 
@@ -77,10 +71,7 @@ class CustomerForm extends Component {
     super();
     this.state = {
       FirstName: "",
-      LastName: "",
-      EmailAddress: "",
-      Title: "Ms",
-      expanded: null
+      LastName: ""
     };
   }
 
@@ -108,33 +99,9 @@ class CustomerForm extends Component {
         >
           <Grid item xs={11} sm={3}>
             <TextField
-              id="standard-select-currency-native"
-              select
-              required
-              label={strings.title}
-              className={classes.textField}
-              value={this.state.title}
-              onChange={this.handleChange("title")}
-              SelectProps={{
-                native: true
-              }}
-              fullWidth
-              margin="normal"
-            >
-              {titles.map(option => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </TextField>
-          </Grid>
-          <Grid item xs={false} sm={9} />
-          <Grid item xs={11} sm={5}>
-            <TextField
-              required
               id="standard-required"
-              label={strings.firstName}
-              placeholder={strings.firstName}
+              label="First Name"
+              placeholder="First Name"
               value={this.state.firstName}
               onChange={this.handleChange("firstName")}
               className={classes.textField}
@@ -143,12 +110,11 @@ class CustomerForm extends Component {
             />
           </Grid>
           <Grid item xs={false} sm={1} />
-          <Grid item xs={11} sm={5}>
+          <Grid item xs={11} sm={3}>
             <TextField
-              required
               id="standard-required"
-              label={strings.lastName}
-              placeholder={strings.lastName}
+              label="Last Name"
+              placeholder="Last Name"
               value={this.state.lastName}
               onChange={this.handleChange("lastName")}
               className={classes.textField}
@@ -156,26 +122,36 @@ class CustomerForm extends Component {
               fullWidth
             />
           </Grid>
-          <Grid item xs={11} sm={11}>
+          <Grid item xs={false} sm={1} />
+          <Grid item xs={11} sm={3}>
             <TextField
-              required
-              id="standard-required"
-              label={strings.emailAddress}
-              placeholder={strings.emailAddress}
-              value={this.state.emailAddress}
-              onChange={this.handleChange("emailAddress")}
+              select
+              label="Country"
+              placeholder="Country"
+              value={this.state.country}
+              onChange={this.handleChange("country")}
               className={classes.textField}
               margin="normal"
               fullWidth
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <EmailIcon />
+                    <FlagIcon />
                   </InputAdornment>
                 )
               }}
-            />
+              SelectProps={{
+                native: true
+              }}
+            >
+              {countries.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </TextField>
           </Grid>
+
           <Grid item xs={11}>
             <div className={classes.expansionPanel}>
               <ExpansionPanel
@@ -183,60 +159,23 @@ class CustomerForm extends Component {
                 onChange={this.handleChangePanel("panel1")}
               >
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography className={classes.heading}>
-                    {strings.userInfo}
-                  </Typography>
-                  <Typography className={classes.secondaryHeading}>
-                    (Optional)
-                  </Typography>
+                  <Typography className={classes.heading}>Details</Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                  <CustomerFormDetailed />
-                </ExpansionPanelDetails>
-              </ExpansionPanel>
-              <ExpansionPanel
-                expanded={expanded === "panel2"}
-                onChange={this.handleChangePanel("panel2")}
-              >
-                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography className={classes.heading}>
-                    Address Info
-                  </Typography>
-                  <Typography className={classes.secondaryHeading}>
-                    (Optional)
-                  </Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                  <AddressDetailed />
-                </ExpansionPanelDetails>
-              </ExpansionPanel>
-              <ExpansionPanel
-                expanded={expanded === "panel3"}
-                onChange={this.handleChangePanel("panel3")}
-              >
-                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography className={classes.heading}>
-                    Contact Preference
-                  </Typography>
-                  <Typography className={classes.secondaryHeading}>
-                    (Optional)
-                  </Typography>
-                </ExpansionPanelSummary>
-
-                <ExpansionPanelDetails>
-                  <ContactPreference />
+                  <SearchFormDetailed />
                 </ExpansionPanelDetails>
               </ExpansionPanel>
             </div>
           </Grid>
           <Grid item xs={12}>
             <Button variant="contained" className={classes.button}>
-              <SaveIcon
+              <SearchIcon
                 className={classnames(classes.leftIcon, classes.iconSmall)}
               />
-              Save
+              Search
             </Button>
           </Grid>
+          <Grid item xs={12} />
         </Grid>
       </form>
     );

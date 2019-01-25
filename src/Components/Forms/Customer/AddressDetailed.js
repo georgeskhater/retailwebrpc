@@ -72,7 +72,7 @@ class AddressDetailed extends Component {
         justify="flex-start"
         className={classes.root}
       >
-        <Grid item xs={3}>
+        <Grid item xs={11} sm={3}>
           <TextField
             select
             label="Country"
@@ -100,8 +100,8 @@ class AddressDetailed extends Component {
             ))}
           </TextField>
         </Grid>
-        <Grid item xs={1} />
-        <Grid item xs={3}>
+        <Grid item xs={false} sm={1} />
+        <Grid item xs={11} sm={3}>
           <TextField
             label="City"
             placeholder="City"
@@ -112,8 +112,8 @@ class AddressDetailed extends Component {
             fullWidth
           />
         </Grid>
-        <Grid item xs={1} />
-        <Grid item xs={3}>
+        <Grid item xs={false} sm={1} />
+        <Grid item xs={11} sm={3}>
           <TextField
             label="Zip Code"
             placeholder="Zip Code"

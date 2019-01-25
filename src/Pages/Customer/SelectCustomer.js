@@ -4,26 +4,17 @@ import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import FormCard from "../../Components/FormCard";
 import ProfileCard from "../../Components/ProfileCard";
-import strings from "../../Translations/i18n";
-
 const styles = theme => ({
   root: {
     flexGrow: 1
-  },
-  demo: {
-    height: "100%"
   }
 });
 
-class AddCustomer extends Component {
+class SelectCustomer extends Component {
   constructor(props) {
     super();
   }
-  componentDidMount() {
-    let lang = this.props.match.params.lang;
-    strings.setLanguage(lang);
-    this.setState({});
-  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -38,11 +29,11 @@ class AddCustomer extends Component {
             direction="row"
             justify="center"
           >
-            <Grid item xs={12} sm={8} md={6}>
-              <FormCard type="create" />
+            <Grid item xs={4}>
+              <FormCard type="search" />
             </Grid>
-            <Grid item xs={12} sm={4} md={3}>
-              <ProfileCard />
+            <Grid item xs={6}>
+              <FormCard type="result" />
             </Grid>
           </Grid>
         </Grid>
@@ -51,7 +42,7 @@ class AddCustomer extends Component {
   }
 }
 
-AddCustomer.propTypes = {
+SelectCustomer.propTypes = {
   classes: PropTypes.object.isRequired
 };
-export default withStyles(styles)(AddCustomer);
+export default withStyles(styles)(SelectCustomer);

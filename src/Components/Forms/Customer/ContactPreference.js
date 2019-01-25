@@ -123,7 +123,10 @@ class CustomerForm extends Component {
             />
           </FormGroup>
         </Grid>
-        <Grid item xs={5}>
+        { this.state.phone && 
+         <Grid
+         container>
+        <Grid item xs={11} sm={5}>
           <TextField
             select
             label="Calling Time 1"
@@ -151,8 +154,8 @@ class CustomerForm extends Component {
             ))}
           </TextField>
         </Grid>
-        <Grid item xs={1} />
-        <Grid item xs={5}>
+        <Grid item xs={false} sm={1} />
+        <Grid item xs={11} sm={5}>
           <TextField
             select
             label="Calling Time 2"
@@ -180,7 +183,9 @@ class CustomerForm extends Component {
             ))}
           </TextField>
         </Grid>
-      </Grid>
+        </Grid>
+      }
+        </Grid>
     );
   }
 }
